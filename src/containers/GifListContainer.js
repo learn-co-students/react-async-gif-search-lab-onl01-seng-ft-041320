@@ -34,9 +34,12 @@ export default class GifListContainer extends Component{
         const searchValue = document.getElementById('search-value').value
         const slugifiedSearchVal = this.stringParameterize(searchValue)
         form.reset()
-        return fetch(`https://api.giphy.com/v1/gifs/search?q=${slugifiedSearchVal}&api_key=dc6zaTOxFJmzC&rating=g`)
+        return fetch(`https://api.giphy.com/v1/gifs/search?q=${slugifiedSearchVal}&api_key=VqtPWK6wHuoL3osn74AyS3j8nMVR3s3g&rating=g`)
         .then(resp => resp.json())
-        .then(json => this.setState({gifsArr: json.data.splice(0, 3)}, ()=> {console.log(this.state)}))
+        .then(json => {
+            if(json.data.length > 0){
+                this.setState({gifsArr: json.data.splice(0, 3)}, ()=> {console.log(this.state)})}
+        })
     }
 
 
